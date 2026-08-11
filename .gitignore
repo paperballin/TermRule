@@ -1,0 +1,26 @@
+# Build output
+target/
+*.class
+*.jar
+*.war
+*.log
+
+# IDE
+.idea/
+*.iml
+.settings/
+.project
+.classpath
+.vscode/
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+
+# Sensitive config (contains API keys and passwords)
+src/main/resources/application.yml
+application-local.yml
+
+# OS files
+.DS_Store
+Thumbs.db

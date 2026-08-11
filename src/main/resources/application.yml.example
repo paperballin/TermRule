@@ -1,0 +1,45 @@
+# 复制此文件为 application.yml 并填入你自己的配置
+# cp application.yml.example application.yml
+
+server:
+  port: 8081
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/language_tool_ai?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=Asia/Shanghai&characterEncoding=utf-8
+    username: root
+    password: 你的MySQL密码
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:schema.sql
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: auto
+
+# DeepSeek API 配置
+# 申请地址：https://platform.deepseek.com
+# 未配置 api-key 时自动降级为 Mock 模式，不影响开发
+deepseek:
+  api-key: 你的DeepSeek API Key
+  base-url: https://api.deepseek.com/v1
+  model: deepseek-chat
+  temperature: 0.3
+
+# 术语在线 (termonline.cn) API 配置
+# 申请凭证：https://www.termonline.cn/termInterface
+# 未配置时自动降级为 Mock 模式，不影响开发
+termonline:
+  appid: ""
+  secret: ""
+
+logging:
+  level:
+    com.language: INFO
