@@ -179,24 +179,19 @@
       <div class="ref-title">参考资源：以下官方网站可查阅用语更新与术语规范</div>
       <div class="ref-list">
         <a href="https://www.termonline.cn" target="_blank" class="ref-link">
-          术语在线
-          <span class="ref-desc">全国科学技术名词审定委员会 · 术语查询</span>
+          术语在线<span class="ref-desc">· 术语查询</span>
         </a>
         <a href="https://www.cnterm.cn" target="_blank" class="ref-link">
-          全国名词委
-          <span class="ref-desc">术语审定公告 · 新词发布</span>
+          全国名词委<span class="ref-desc">· 新词发布</span>
         </a>
         <a href="http://www.gov.cn" target="_blank" class="ref-link">
-          中国政府网
-          <span class="ref-desc">国务院文件 · 政策法规</span>
+          中国政府网<span class="ref-desc">· 政策法规</span>
         </a>
         <a href="http://www.moe.gov.cn" target="_blank" class="ref-link">
-          教育部
-          <span class="ref-desc">教材规范 · 语言文字工作</span>
+          教育部<span class="ref-desc">· 语言文字</span>
         </a>
         <a href="http://www.xinhuanet.com" target="_blank" class="ref-link">
-          新华社
-          <span class="ref-desc">新闻报道禁用词 · 规范用语</span>
+          新华社<span class="ref-desc">· 规范用语</span>
         </a>
       </div>
     </div>
@@ -591,20 +586,23 @@ async function handleSave() {
 
 .ref-list {
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+  flex-wrap: nowrap;
+  gap: 8px;
+  justify-content: space-between;
 }
 
 .ref-link {
-  display: flex;
-  flex-direction: column;
-  padding: 8px 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
   background: var(--bg-table-header);
   border: 1px solid var(--border-color);
   border-radius: 6px;
   color: var(--link-color);
   text-decoration: none;
-  font-size: 14px;
+  font-size: 13px;
+  white-space: nowrap;
   transition: all 0.2s;
 }
 
@@ -615,7 +613,6 @@ async function handleSave() {
 
 .ref-desc {
   color: var(--text-muted);
-  font-size: 12px;
-  margin-top: 2px;
+  font-size: 11px;
 }
 </style>

@@ -19,8 +19,12 @@ frontend/dist/
 
 # Sensitive config (contains API keys and passwords)
 src/main/resources/application.yml
-application-local.yml
+src/main/resources/application-local.yml
+src/main/resources/application-cloud.yml
 
 # OS files
 .DS_Store
 Thumbs.db
+
+# Personal files
+减重计划.md

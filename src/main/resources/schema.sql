@@ -1,8 +1,5 @@
-USE language_tool_ai;
-
 -- v5.0 简化：只保留用语更新类型，移除 rule_type 和 doc_source
-DROP TABLE IF EXISTS rule;
-
+-- 注意：不写 USE、不 DROP，保证多环境（本地/云端）通用且重启不丢数据
 CREATE TABLE IF NOT EXISTS rule (
     id              BIGINT AUTO_INCREMENT PRIMARY KEY,
     old_word        VARCHAR(255) NOT NULL COMMENT '非规范/旧用语',
