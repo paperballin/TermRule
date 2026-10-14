@@ -1,6 +1,6 @@
 # TermRule - 术语规范规则生成系统
 
-基于 Spring Boot 3 + Vue 3 的中文术语规范规则生成与校验工具。
+基于 Spring Boot 3 + Vue 3 的中文术语规范规则生成与校验工具。输入不规范用词，自动查询官方术语、AI 生成替换规则，并对文本做术语规范性校验。
 
 ## 功能
 
@@ -18,6 +18,15 @@
 | AI | DeepSeek API（OpenAI 兼容接口） |
 | 数据源 | 术语在线 termonline.cn API |
 
+## 设计与取舍
+
+代码之外，几个值得说明的设计判断：
+
+- **AI 能力与外部依赖可降级**：未配置 DeepSeek API Key 或术语在线凭证时，系统自动切换为 Mock 模式，全部功能可离线体验。目的是让项目"开箱即跑"，也避免因第三方接口波动导致整个系统不可用。
+- **AI 只做"判断"，不做"数据"**：术语的权威数据来自术语在线的官方接口，AI 只负责生成示例句、解释规范原因、做语境判断。把"知识"和"推理"分开，避免模型幻觉污染术语库。
+- **规则导出对齐 LanguageTool 规范**：导出的 XML 可直接被 LanguageTool 加载，让生成的规则能落到真实工具链里用，而不是停留在"自己看"。
+- **前后端分离 + 统一响应封装**：后端 REST API 统一返回结构，前端通过 api 层集中管理请求，便于扩展和调试。
+
 ## 快速开始
 
 ### 前置要求
@@ -30,10 +39,14 @@
 ### 后端
 
 ```bash
-# 1. 复制配置模板并填入你的配置
+# 1. 建库并导入表结构
+mysql -u root -p -e "CREATE DATABASE termrule DEFAULT CHARSET utf8mb4;"
+mysql -u root -p termrule < src/main/resources/schema.sql
+
+# 2. 复制配置模板并填入你的配置（数据库账号、API Key 等）
 cp src/main/resources/application.yml.example src/main/resources/application.yml
 
-# 2. 编译运行
+# 3. 编译运行
 mvn spring-boot:run
 ```
 
